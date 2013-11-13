@@ -1,6 +1,6 @@
-# A Clojure Maze Generator
+* A Clojure Maze Generator
 
-Written for the Nov. 2013 West London Hack Night. (The first one I've
+Written for the Nov. 2013 [[http://www.meetup.com/West-London-Hack-Night/][West London Hack Night]]. (The first one I've
 ever missed - sob...)
 
 The time limit's 90 minutes, so forgive the rough edges!
