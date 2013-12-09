@@ -1,6 +1,6 @@
 (ns maze.generate)
 
-(defn create-grid
+(defn- create-grid
   [width height initial-value]
   (->> (repeat initial-value)
        (partition width)
@@ -8,24 +8,24 @@
        (map vec)
        vec))
 
-(defn neighbours-of
+(defn- neighbours-of
   [[x y]]
   [[(- x 2) y]
    [(+ x 2) y]
    [x (- y 2)]
    [x (+ y 2)]])
 
-(defn position-inside-grid?
+(defn- position-inside-grid?
   [[x y] grid]
   (and (< -1 y (count grid))
        (< -1 x (count (nth grid y)))))
 
-(defn wall?
+(defn- wall?
   [[x y] grid]
   (= (get-in grid [y x])
      :wall))
 
-(defn first-valid-neighbour
+(defn- first-valid-neighbour
   [point grid]
   (->> (neighbours-of point)
        (filter #(position-inside-grid? % grid))
@@ -33,17 +33,17 @@
        shuffle
        first))
 
-(defn set-floor
+(defn- set-floor
   [point grid]
   (update-in grid (reverse point) :floor))
 
-(defn remove-midpoint
+(defn- remove-midpoint
   [grid [x y] [x' y']]
   (set-floor [(/ (+ x x') 2)
               (/ (+ y y') 2)]
              grid))
 
-(defn evolve
+(defn- evolve
   [grid [x y]]
   (loop [grid' grid
          point [x y]
