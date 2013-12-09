@@ -15,7 +15,7 @@
    [x (- y 2)]
    [x (+ y 2)]])
 
-(defn valid?
+(defn position-inside-grid?
   [[x y] grid]
   (and (< -1 y (count grid))
        (< -1 x (count (nth grid y)))))
@@ -28,7 +28,7 @@
 (defn first-valid-neighbour
   [point grid]
   (->> (neighbours-of point)
-       (filter #(valid? % grid))
+       (filter #(position-inside-grid? % grid))
        (filter #(wall? % grid))
        shuffle
        first))
