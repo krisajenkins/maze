@@ -20,7 +20,7 @@
   (and (< -1 y (count grid))
        (< -1 x (count (nth grid y)))))
 
-(defn- wall?
+(defn wall?
   [[x y] grid]
   (= (get-in grid [y x])
      :wall))
