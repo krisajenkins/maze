@@ -61,9 +61,10 @@
 
 (defn generate-maze
   "Generate a maze, a 2D array, with the given wicth & height.
-  Width and height must be odd numbers."
-  [[width height]]
-  {:pre [(odd? width)
-         (odd? height)]}
-  (-> (create-grid width height :wall)
-      (evolve [1 1])))
+  Width and height must be odd numbers. Start is an optional [x y] pair, and will default to [1 1]"
+  ([size] (generate-maze size [1 1]))
+  ([[width height] center]
+     {:pre [(odd? width)
+            (odd? height)]}
+     (-> (create-grid width height :wall)
+         (evolve center))))
